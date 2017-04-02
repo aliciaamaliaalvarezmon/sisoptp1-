@@ -27,6 +27,18 @@ void TaskConsola(int pid, vector<int> params) { // params: ms_pid, ms_io, ms_pid
 }
 
 
+void TaskPajarillo(int pid , vector<int> params){
+	int cant_repeticiones = params[0];
+	int tiempo_cpu = params[1];
+	int tiempo_bloqueo = params[2];
+
+	for (int i = 0; i < cant_repeticiones; ++i)
+	{
+		uso_CPU(pid,tiempo_cpu);
+		uso_IO(pid,tiempo_bloqueo);
+	}
+}
+
 
 
 
