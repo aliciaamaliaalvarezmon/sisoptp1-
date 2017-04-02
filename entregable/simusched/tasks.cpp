@@ -18,6 +18,16 @@ void TaskAlterno(int pid, vector<int> params) { // params: ms_pid, ms_io, ms_pid
 	}
 }
 
+void TaskConsola(int pid, vector<int> params) { // params: ms_pid, ms_io, ms_pid, ...
+	for(int i = 0; i < params[0]; i++) {//tengo que hacer n (params[0]) llamadas bloqueantes
+		 srand(time(0)); //pone la semilla en el tiempo del pc,consume tiempo del navegador, uede ser que haa que sacarla
+		 uso_IO(pid, (rand()%params[2] + params[1]));
+
+	}
+}
+
+
+
 
 
 void tasks_init(void) {
@@ -27,4 +37,5 @@ void tasks_init(void) {
 	register_task(TaskCPU, 1);
 	register_task(TaskIO, 2);
 	register_task(TaskAlterno, -1);
+	register_task(TaskConsola, 3);
 }
