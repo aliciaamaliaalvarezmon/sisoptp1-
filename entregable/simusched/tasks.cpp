@@ -1,4 +1,5 @@
 #include "tasks.h"
+#include <iostream>
 
 using namespace std;
 
@@ -45,8 +46,8 @@ void TaskPajarillo(int pid , vector<int> params){
 
 
 
-TaskPriorizada(int pid , vector<int> params){
-	if ((params[0] > 5) or (params[0] < 0){
+void TaskPriorizada(int pid , vector<int> params){
+	if ((params[0] > 5) || (params[0] < 0)){
 		cerr << "No hay esa prioridad" << endl;
 	}
 	uso_CPU(pid, params[1]);

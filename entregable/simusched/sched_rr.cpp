@@ -8,7 +8,7 @@ using namespace std;
 
 SchedRR::SchedRR(vector<int> argn) {
 	//argn[0] == numero de cores	
-	for(i = 0; i < argn[0]; i++){
+	for(int i = 0; i < argn[0]; i++){
 		ticks.push_back(argn[i+1]);
 	}
 
@@ -54,7 +54,7 @@ int SchedRR::tick(int cpu, const enum Motivo m) {//el cpu= core corriendo, Motiv
 		}
 		if(m == BLOCK){
 			if(current_time() == ticks[current_pid(cpu)]){
-				unblock(current_pid()); //no deberia pasarse de igual?
+				unblock(current_pid(cpu)); //no deberia pasarse de igual?
 				if (q.empty()) return current_pid(cpu);
 				else {							
 					int sig = q.front(); q.pop();
