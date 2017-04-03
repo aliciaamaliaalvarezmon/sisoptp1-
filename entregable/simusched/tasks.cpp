@@ -20,8 +20,8 @@ void TaskAlterno(int pid, vector<int> params) { // params: ms_pid, ms_io, ms_pid
 
 void TaskConsola(int pid, vector<int> params) { // params: ms_pid, ms_io, ms_pid, ...
   int n = params[0];
-  int ms_pid = params[1];
-  int ms_io = params[2];
+  int ms_pid = params[1];//bmin
+  int ms_io = params[2];//bmax
 	for(int i = 0; i < n; i++) {//tengo que hacer n (params[0]) llamadas bloqueantes
 		 srand(5); //pone la semilla en el tiempo del pc,consume tiempo del navegador, uede ser que haa que sacarla
 		 uso_IO(pid, (rand()%ms_io + ms_pid));
@@ -45,6 +45,18 @@ void TaskPajarillo(int pid , vector<int> params){
 
 
 
+TaskPriorizada(int pid , vector<int> params){
+	if ((params[0] > 5) or (params[0] < 0){
+		cerr << "No hay esa prioridad" << endl;
+	}
+	uso_CPU(pid, params[1]);
+}
+
+
+
+
+
+
 void tasks_init(void) {
 	/* Todos los tipos de tareas se deben registrar acá para poder ser usadas.
 	 * El segundo parámetro indica la cantidad de parámetros que recibe la tarea
@@ -54,4 +66,5 @@ void tasks_init(void) {
 	register_task(TaskAlterno, -1);
 	register_task(TaskConsola, 3);
 	register_task(TaskPajarillo, 3);
+	register_task(TaskPriorizada, 2);
 }
