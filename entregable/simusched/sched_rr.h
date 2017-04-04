@@ -16,8 +16,10 @@ class SchedRR : public SchedBase {
 		virtual int tick(int cpu, const enum Motivo m);
 
 	private:
-		std::queue<int> q;
-		std::vector<int> ticks;
+		std::queue<int> ready;
+		std::vector<int> ticksXCore;
+		std::vector<int> ticksActuales;
+		std::vector<int> waiting;
 		//int ticks[argn[0]];
 		// Completar
 };
