@@ -19,6 +19,17 @@ void TaskAlterno(int pid, vector<int> params) { // params: ms_pid, ms_io, ms_pid
 	}
 }
 
+int dameRandom(int a , int b)
+{
+	int random = rand();
+	while(! (random > a && random < b))
+	{
+		random = rand();
+	}
+	return random;
+}
+
+
 void TaskConsola(int pid, vector<int> params) { // params: ms_pid, ms_io, ms_pid, ...
   int n = params[0];
   int ms_pid = params[1];//bmin
@@ -26,6 +37,10 @@ void TaskConsola(int pid, vector<int> params) { // params: ms_pid, ms_io, ms_pid
 	for(int i = 0; i < n; i++) {//tengo que hacer n (params[0]) llamadas bloqueantes
 		 srand(5); //pone la semilla en el tiempo del pc,consume tiempo del navegador, uede ser que haa que sacarla
 		 uso_IO(pid, (rand()%ms_io + ms_pid));
+		 /* uso_IO(pid,dameRandom(ms_pid,ms_io));
+
+		 */
+
 
 	}
 }
