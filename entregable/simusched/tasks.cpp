@@ -21,11 +21,11 @@ void TaskAlterno(int pid, vector<int> params) { // params: ms_pid, ms_io, ms_pid
 
 int dameRandom(int a , int b)
 {
-	int random = rand();
+	int random ;
 	while (true)
 	{	
-		random = rand();
-		if (random => a && random <= b)
+		random = rand() % (b+1);
+		if (random > a-1)
 		{
 			return random;
 		}
