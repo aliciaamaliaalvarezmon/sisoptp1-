@@ -21,6 +21,7 @@ void TaskAlterno(int pid, vector<int> params) { // params: ms_pid, ms_io, ms_pid
 
 int dameRandom(int a , int b)
 {
+	srand(5); //Fijamos la semilla para repetir los resultados
 	int random ;
 	while (true)
 	{	
@@ -39,13 +40,9 @@ void TaskConsola(int pid, vector<int> params) { // params: ms_pid, ms_io, ms_pid
   int ms_pid = params[1];//bmin
   int ms_io = params[2];//bmax
 	for(int i = 0; i < n; i++) {//tengo que hacer n (params[0]) llamadas bloqueantes
-		 srand(5); //pone la semilla en el tiempo del pc,consume tiempo del navegador, uede ser que haa que sacarla
-		 uso_IO(pid, (rand()%ms_io + ms_pid));
-		 /* uso_IO(pid,dameRandom(ms_pid,ms_io));
-
-		 */
-
-
+		 //srand(5); //pone la semilla en el tiempo del pc,consume tiempo del navegador, uede ser que haa que sacarla
+		// uso_IO(pid, (rand()%ms_io + ms_pid));
+		 uso_IO(pid,dameRandom(ms_pid,ms_io));
 	}
 }
 
