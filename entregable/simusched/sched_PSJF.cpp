@@ -1,12 +1,12 @@
 #include <vector>
 #include <queue>
-#include "sched_rr.h"
+#include "sched_PSJF.h"
 #include "basesched.h"
 #include <iostream>
 
 using namespace std;
 
-SchedRR::SchedPSJF(vector<int> argn) {
+SchedPSJF::SchedPSJF(vector<int> argn) {
 	colas.push_back(mypq1);
 	colas.push_back(mypq2);
 	colas.push_back(mypq3);
@@ -22,24 +22,24 @@ SchedPSJF::~SchedPSJF() {
 
 
 void SchedPSJF::load(int pid) {
-	vector<int>* hola = tsk_params(current_pid(cpu));//en 0 estan la prioridad, en 1 la duracion
+	vector<int>* hola = tsk_params(pid);//en 0 estan la prioridad, en 1 la duracion
 	int prioridad = (*(hola))[0]; 
 	int duracion = (*(hola))[1];
 
-	if(*(hola)[0]==1){
-		mypq1.push(<duracion, current_pid(cpu)>);
+	if(prioridad==1){
+		mypq1.push(make_tuple(duracion, pid));
 	}
-		if(*(hola)[0]==2){
-		mypq2.push(<duracion, current_pid(cpu)>);
+		if(prioridad==2){
+		mypq2.push(make_tuple(duracion, pid));
 	}
-		if(*(hola)[0]==3){
-		mypq3.push(<duracion, current_pid(cpu)>);
+		if(prioridad==3){
+		mypq3.push(make_tuple(duracion, pid));
 	}
-		if(*(hola)[0]==4){
-		mypq4.push(<duracion, current_pid(cpu)>);
+		if(prioridad==4){
+		mypq4.push(make_tuple(duracion, pid));
 	}
-		if(*(hola)[0]==5){
-		mypq5.push(<duracion, current_pid(cpu)>);
+		if(prioridad==5){
+		mypq5.push(make_tuple(duracion, pid));
 	}
 }
 
@@ -59,27 +59,27 @@ int SchedPSJF::tick(int cpu, const enum Motivo m) //NUNCA VA A SER BLOCK!!
 						if(mypq5.empty()){
 							return IDLE_TASK;
 						}else{
-						 int sig = mypq5.front();
+						 int sig = get<1>(mypq5.top());
 						 mypq5.pop();
 						 return sig;		
 						}
 					}else{
-						 int sig = mypq4.front();
+						 int sig = get<1>(mypq4.top());
 						 mypq4.pop();
 						 return sig;
 					}
 				}else{
-					 int sig = mypq3.front();
+					 int sig = get<1>(mypq3.top());
 					 mypq3.pop();
 					 return sig;
 				}
 			}else{
-				 int sig = mypq2.front();
+				 int sig = get<1>(mypq2.top());
 				 mypq2.pop();
 				 return sig;
 			}			
 		}else {
-			int sig = mypq1.front();
+			int sig = get<1>(mypq1.top());
 			mypq1.pop();
 			return sig;
 		}
@@ -87,23 +87,23 @@ int SchedPSJF::tick(int cpu, const enum Motivo m) //NUNCA VA A SER BLOCK!!
 		if(m == TICK){
 			if(current_pid(cpu)==IDLE_TASK){
 				if(!mypq1.empty()){
-				int next = mypq1.front();
+				int next = get<1>(mypq1.top());
 				mypq1.pop();
 				return next;				
 			}else if(mypq1.empty() && !mypq2.empty()){				
-				int next = mypq2.front();
+				int next = get<1>(mypq2.top());
 				mypq2.pop();
 				return next;	
 			}else if(mypq1.empty() && mypq2.empty() && !mypq3.empty()){			
-				int next = mypq3.front();
+				int next = get<1>(mypq3.top());
 				mypq3.pop();
 				return next;
 			}else if(mypq1.empty() && mypq2.empty() && mypq3.empty() && !mypq4.empty()){
-				int next = mypq4.front();
+				int next = get<1>(mypq4.top());
 				mypq4.pop();
 				return next;
 			}else if(mypq1.empty() && mypq2.empty() && mypq3.empty() && mypq4.empty() && !mypq5.empty()){
-				int next = mypq5.front();
+				int next = get<1>(mypq5.top());
 				mypq5.pop();
 				return next;
 			}else if(mypq1.empty() && mypq2.empty() && mypq3.empty() && mypq4.empty() && mypq5.empty()){
@@ -111,19 +111,19 @@ int SchedPSJF::tick(int cpu, const enum Motivo m) //NUNCA VA A SER BLOCK!!
 			}				
 			}else{
 				int prioridad = (*(tsk_params(current_pid(cpu))))[0];
-				for(int i =1, i <= prioridad, i++){
+				for(int i =1; i <= prioridad; i++){
 					if(i == prioridad){
-						if( !colas[i-1].empty() and get<0>(colas[i-1].front()) < prioridad){
-							int next = colas[i].front();
+						if( !colas[i-1].empty() and get<0>(colas[i-1].top()) < prioridad){
+							int next = get<1>(colas[i].top());
 							colas[i-1].pop();
-							colas[prioridad-1].push(<(*(tsk_params(current_pid(cpu))))[0],current_pid(cpu)>);
+							colas[prioridad-1].push(make_tuple((*(tsk_params(current_pid(cpu))))[0],current_pid(cpu)));
 							return next;
 						}else{
 							return current_pid(cpu);
 						}						
 					}//Si llega aca es porque es menor, osea que tiene mayor prioridad
 					if(!colas[i-1].empty()){
-						int next = colas[i-1].front();
+						int next = get<1>(colas[i-1].top());
 						colas[i-1].pop();
 						return next;
 					}
@@ -141,6 +141,6 @@ int SchedPSJF::tick(int cpu, const enum Motivo m) //NUNCA VA A SER BLOCK!!
 
 
 
-
+//hola
 
 
