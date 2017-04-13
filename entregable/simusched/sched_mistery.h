@@ -5,6 +5,7 @@
 #include <queue>
 #include <algorithm>
 #include "basesched.h"
+#include <tuple>
 
 using namespace std;
 
@@ -17,7 +18,10 @@ class SchedMistery : public SchedBase {
 		virtual int tick(int cpu, const enum Motivo m);
 
 	private:
-		// Completar
+
+    // <longitud, pid>
+    priority_queue<tuple<int,int> ,vector<tuple<int,int> >,greater<tuple<int,int> > > cola;
+
 };
 
 #endif
