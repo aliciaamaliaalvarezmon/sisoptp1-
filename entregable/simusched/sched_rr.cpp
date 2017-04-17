@@ -37,14 +37,76 @@ void SchedRR::unblock(int pid) {
 
 }
 
+int SchedRR::tick(int cpu, const enum Motivo m) {
+   
+  if(ticksActuales[cpu] == ticksXCore[cpu]){
+    ticksActuales[cpu] = 0;
+  }
+
+  int cpid = current_pid(cpu);
+   
+  if( m == EXIT){
+    
+    if(!ready.empty()){
+      int sig = ready.front(); ready.pop();
+      ticksActuales[cpu]++;
+      return sig;
+    }else{ 
+      return IDLE_TASK;
+    }
+  
+  }else if(m == TICK){
+
+    if(cpid == IDLE_TASK && ready.empty()) return IDLE_TASK;
+    else if(cpid == IDLE_TASK && !ready.empty()){
+      int sig = ready.front(); ready.pop();
+      ticksActuales[cpu]++;
+      return sig;
+    }else{ 
+      if(ticksActuales[cpu] == 0 && ready.empty()){
+        ticksActuales[cpu]++;
+        return cpid;
+      }else if(ticksActuales[cpu] == 0){
+        int sig = ready.front(); ready.pop();
+				ready.push(cpid);
+        ticksActuales[cpu]++;
+        return sig;
+      }else{ /*Si ticksActuales[cpu] != 0*/
+        ticksActuales[cpu]++;
+        return cpid;
+      }
+    }
+  
+  }else{ /* m == BLOCK*/
+    waiting.push_back(cpid);
+    
+    if (ready.empty()) return IDLE_TASK;
+		else{
+		  int sig = ready.front(); ready.pop();
+      ticksActuales[cpu]++;
+			return sig;
+    }
+
+  }
+}
+
+/*
 int SchedRR::tick(int cpu, const enum Motivo m) 
 {//el cpu= core corriendo, Motivo m: porque bloqueado
-		
+  cout << "CPU: " << cpu << " Motivo: " << m << endl;
+  cout << "Pid: " << current_pid(cpu) << endl; 	
+  cout << "ticks ac " << ticksActuales[cpu] << endl; 	
 	if (m == EXIT) {
 		// Si el pid actual terminó, sigue el próximo.
 		if (ready.empty()){ 
+      if(ticksActuales[cpu] == ticksXCore[cpu]){
+          ticksActuales[cpu] = 0;
+      }
 			return IDLE_TASK;
 		}else {
+      if(ticksActuales[cpu] == ticksXCore[cpu]){
+          ticksActuales[cpu] = 0;
+      }
 			int sig = ready.front(); ready.pop();
 			return sig;
 		}
@@ -54,6 +116,9 @@ int SchedRR::tick(int cpu, const enum Motivo m)
 			if(current_pid(cpu)==	IDLE_TASK && !ready.empty()){
 				int next = ready.front();
 				ready.pop();
+        if(ticksActuales[cpu] == ticksXCore[cpu]){
+            ticksActuales[cpu] = 0;
+        }
 				return next;
 			}else if (current_pid(cpu)==IDLE_TASK && ready.empty()){
 				return IDLE_TASK;
@@ -72,8 +137,7 @@ int SchedRR::tick(int cpu, const enum Motivo m)
 						return next;
 					}
 
-				}// TODO : REVISAR
-				
+				}				
 				return current_pid(cpu);
 			}
 
@@ -83,6 +147,11 @@ int SchedRR::tick(int cpu, const enum Motivo m)
 				if (ready.empty()){
 					return IDLE_TASK;
 				}else{
+				 ticksActuales[cpu]++;
+          if(ticksActuales[cpu] == ticksXCore[cpu]){
+            ticksActuales[cpu] = 0;
+          }
+
 					int next = ready.front();
 					ready.pop();
 					return next;
@@ -91,7 +160,7 @@ int SchedRR::tick(int cpu, const enum Motivo m)
 		}
 		
 	} 
-}
+}*/
 
 
 
