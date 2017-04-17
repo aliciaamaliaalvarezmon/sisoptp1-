@@ -19,22 +19,6 @@ void TaskAlterno(int pid, vector<int> params) { // params: ms_pid, ms_io, ms_pid
 	}
 }
 
-int dameRandom(int a , int b)
-{
-	srand(5); //Fijamos la semilla para repetir los resultados
-	int random ;
-	while (true)
-	{	
-		random = rand() % (b+1);
-		if (random > a-1)
-		{
-			return random;
-		}
-	}
-	
-}
-
-
 void TaskConsola(int pid, vector<int> params) {
   int n = params[0];
   int bmin = params[1];
@@ -42,7 +26,10 @@ void TaskConsola(int pid, vector<int> params) {
 
   //tengo que hacer n llamadas bloqueantes
 	for(int i = 0; i < n; i++) {
-		 uso_IO(pid,dameRandom(bmin,bmax));
+	  //duracion al azar
+    srand(5);
+    int random =  bmin + ( rand() % ( bmax - bmin + 1 ) );
+		 uso_IO(pid, random);
 	}
 }
 
