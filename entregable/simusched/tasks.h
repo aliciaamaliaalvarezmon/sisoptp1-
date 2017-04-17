@@ -3,6 +3,6 @@
 
 #include "basetask.h"
 void tasks_init(void);
-int DameRandom();
+
 
 #endif
