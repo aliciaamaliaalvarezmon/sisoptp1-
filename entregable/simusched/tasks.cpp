@@ -27,7 +27,6 @@ void TaskConsola(int pid, vector<int> params) {
   //tengo que hacer n llamadas bloqueantes
 	for(int i = 0; i < n; i++) {
 	  //duracion al azar
-    srand(5);
     int random =  bmin + ( rand() % ( bmax - bmin + 1 ) );
 		 uso_IO(pid, random);
 	}
