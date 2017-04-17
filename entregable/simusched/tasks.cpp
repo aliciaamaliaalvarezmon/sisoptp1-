@@ -35,14 +35,14 @@ int dameRandom(int a , int b)
 }
 
 
-void TaskConsola(int pid, vector<int> params) { // params: ms_pid, ms_io, ms_pid, ...
+void TaskConsola(int pid, vector<int> params) {
   int n = params[0];
-  int ms_pid = params[1];//bmin
-  int ms_io = params[2];//bmax
-	for(int i = 0; i < n; i++) {//tengo que hacer n (params[0]) llamadas bloqueantes
-		 //srand(5); //pone la semilla en el tiempo del pc,consume tiempo del navegador, uede ser que haa que sacarla
-		// uso_IO(pid, (rand()%ms_io + ms_pid));
-		 uso_IO(pid,dameRandom(ms_pid,ms_io));
+  int bmin = params[1];
+  int bmax = params[2];
+
+  //tengo que hacer n llamadas bloqueantes
+	for(int i = 0; i < n; i++) {
+		 uso_IO(pid,dameRandom(bmin,bmax));
 	}
 }
 
