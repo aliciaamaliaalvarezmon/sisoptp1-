@@ -25,7 +25,6 @@ void SchedPSJF::load(int pid) {
 	vector<int>* hola = tsk_params(pid);//en 0 estan la prioridad, en 1 la duracion
 	int prioridad = (*(hola))[0]; 
 	int duracion = (*(hola))[1];
-
 	if(prioridad==1){
 		mypq1.push(make_tuple(duracion, pid));
 	}
