@@ -7,11 +7,6 @@
 using namespace std;
 
 SchedPSJF::SchedPSJF(vector<int> argn) {
-	colas.push_back(mypq1);
-	colas.push_back(mypq2);
-	colas.push_back(mypq3);
-	colas.push_back(mypq4);
-	colas.push_back(mypq5);
 
 // Preemptive Shortest Job First a primera vista no se esta rigiendo por quantums, sino por la prioridad de las tareas que ejecuta
 }

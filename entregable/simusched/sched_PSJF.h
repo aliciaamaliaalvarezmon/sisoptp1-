@@ -18,7 +18,7 @@ class SchedPSJF : public SchedBase {
 		virtual int tick(int cpu, const enum Motivo m);
 
 	private:
-		vector<priority_queue<tuple<int, int>, vector<tuple<int, int> >, greater<tuple<int, int> > > > colas;
+		
 		priority_queue<tuple<int,int>, vector<tuple<int, int> >, greater<tuple<int, int> > > mypq1;// la primera componente es la longitud y la segund la tarea.
 		priority_queue<tuple<int,int>, vector<tuple<int, int> >, greater<tuple<int, int> > > mypq2;// l
 		priority_queue<tuple<int,int>, vector<tuple<int, int> >, greater<tuple<int, int> > > mypq3; // la 2
