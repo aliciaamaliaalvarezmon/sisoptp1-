@@ -110,7 +110,7 @@ int SchedPSJF::tick(int cpu, const enum Motivo m) //NUNCA VA A SER BLOCK!!
 					if(!mypq1.empty() and get<0>(mypq1.top()) < duracion){	
 						int next = get<1>(mypq1.top());
 						mypq1.pop();
-						mypq1.push(make_tuple((*(tsk_params(current_pid(cpu))))[0],current_pid(cpu)));						
+						mypq1.push(make_tuple(prioridad,current_pid(cpu)));//decia push						
 						return next;
 					}else{
 						return current_pid(cpu);
@@ -120,13 +120,13 @@ int SchedPSJF::tick(int cpu, const enum Motivo m) //NUNCA VA A SER BLOCK!!
 					if(!mypq1.empty()){
 						int next = get<1>(mypq1.top());
 						mypq1.pop();
-						mypq2.push(make_tuple((*(tsk_params(current_pid(cpu))))[0],current_pid(cpu)));						
+						mypq2.push(make_tuple((*(tsk_params(current_pid(cpu))))[1],current_pid(cpu)));						
 						return next;
 					}else{
 						if(!mypq2.empty() and get<0>(mypq2.top()) < duracion){	
 							int next = get<1>(mypq2.top());
 							mypq2.pop();
-							mypq2.push(make_tuple((*(tsk_params(current_pid(cpu))))[0],current_pid(cpu)));						
+							mypq2.push(make_tuple((*(tsk_params(current_pid(cpu))))[1],current_pid(cpu)));						
 							return next;
 						}else{
 							return current_pid(cpu);
@@ -137,19 +137,19 @@ int SchedPSJF::tick(int cpu, const enum Motivo m) //NUNCA VA A SER BLOCK!!
 					if(!mypq1.empty()){
 						int next = get<1>(mypq1.top());
 						mypq1.pop();
-						mypq3.push(make_tuple((*(tsk_params(current_pid(cpu))))[0],current_pid(cpu)));						
+						mypq3.push(make_tuple((*(tsk_params(current_pid(cpu))))[1],current_pid(cpu)));						
 						return next;
 					}else{
 						if(!mypq2.empty()){
 							int next = get<1>(mypq2.top());
 							mypq2.pop();
-							mypq3.push(make_tuple((*(tsk_params(current_pid(cpu))))[0],current_pid(cpu)));						
+							mypq3.push(make_tuple((*(tsk_params(current_pid(cpu))))[1],current_pid(cpu)));						
 							return next;
 						}else{
 							if(!mypq3.empty() and get<0>(mypq3.top()) < duracion){	
 								int next = get<1>(mypq3.top());
 								mypq3.pop();
-								mypq3.push(make_tuple((*(tsk_params(current_pid(cpu))))[0],current_pid(cpu)));						
+								mypq3.push(make_tuple((*(tsk_params(current_pid(cpu))))[1],current_pid(cpu)));						
 								return next;
 							}else{
 								return current_pid(cpu);
@@ -161,25 +161,25 @@ int SchedPSJF::tick(int cpu, const enum Motivo m) //NUNCA VA A SER BLOCK!!
 					if(!mypq1.empty()){
 						int next = get<1>(mypq1.top());
 						mypq1.pop();
-						mypq4.push(make_tuple((*(tsk_params(current_pid(cpu))))[0],current_pid(cpu)));						
+						mypq4.push(make_tuple((*(tsk_params(current_pid(cpu))))[1],current_pid(cpu)));						
 						return next;
 					}else{
 						if(!mypq2.empty()){
 							int next = get<1>(mypq2.top());
 							mypq2.pop();
-							mypq4.push(make_tuple((*(tsk_params(current_pid(cpu))))[0],current_pid(cpu)));						
+							mypq4.push(make_tuple((*(tsk_params(current_pid(cpu))))[1],current_pid(cpu)));						
 							return next;
 						}else{
 							if(!mypq3.empty()){
 								int next = get<1>(mypq3.top());
 								mypq3.pop();
-								mypq4.push(make_tuple((*(tsk_params(current_pid(cpu))))[0],current_pid(cpu)));						
+								mypq4.push(make_tuple((*(tsk_params(current_pid(cpu))))[1],current_pid(cpu)));						
 								return next;
 							}else{							
 								if(!mypq4.empty() and get<0>(mypq4.top()) < duracion){	
 									int next = get<1>(mypq4.top());
 									mypq4.pop();
-									mypq4.push(make_tuple((*(tsk_params(current_pid(cpu))))[0],current_pid(cpu)));						
+									mypq4.push(make_tuple((*(tsk_params(current_pid(cpu))))[1],current_pid(cpu)));						
 									return next;
 								}else{
 									return current_pid(cpu);
@@ -192,31 +192,31 @@ int SchedPSJF::tick(int cpu, const enum Motivo m) //NUNCA VA A SER BLOCK!!
 					if(!mypq1.empty()){
 						int next = get<1>(mypq1.top());
 						mypq1.pop();
-						mypq5.push(make_tuple((*(tsk_params(current_pid(cpu))))[0],current_pid(cpu)));						
+						mypq5.push(make_tuple((*(tsk_params(current_pid(cpu))))[1],current_pid(cpu)));						
 						return next;
 					}else{
 						if(!mypq2.empty()){
 							int next = get<1>(mypq2.top());
 							mypq2.pop();
-							mypq5.push(make_tuple((*(tsk_params(current_pid(cpu))))[0],current_pid(cpu)));						
+							mypq5.push(make_tuple((*(tsk_params(current_pid(cpu))))[1],current_pid(cpu)));						
 							return next;
 						}else{
 							if(!mypq3.empty()){
 								int next = get<1>(mypq3.top());
 								mypq3.pop();
-								mypq5.push(make_tuple((*(tsk_params(current_pid(cpu))))[0],current_pid(cpu)));						
+								mypq5.push(make_tuple((*(tsk_params(current_pid(cpu))))[1],current_pid(cpu)));						
 								return next;
 							}else{	
 								if(!mypq4.empty()){
 									int next = get<1>(mypq4.top());
 									mypq4.pop();
-									mypq5.push(make_tuple((*(tsk_params(current_pid(cpu))))[0],current_pid(cpu)));						
+									mypq5.push(make_tuple((*(tsk_params(current_pid(cpu))))[1],current_pid(cpu)));						
 									return next;
 								}else{						
 									if(!mypq5.empty() and get<0>(mypq5.top()) < duracion){	
 										int next = get<1>(mypq5.top());
 										mypq5.pop();
-										mypq5.push(make_tuple((*(tsk_params(current_pid(cpu))))[0],current_pid(cpu)));						
+										mypq5.push(make_tuple((*(tsk_params(current_pid(cpu))))[1],current_pid(cpu)));						
 										return next;
 									}else{
 										return current_pid(cpu);
