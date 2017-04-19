@@ -1,23 +1,8 @@
-//voy a anotar las ideas que se me ocurrieron y aclarar que el scheduler FIFO no debe verse..
-
-//primero, hay que ver las distintas propiedades de los sched. Por ejemoplo, el round robin es el unico que puede usar llamadas bloqueantes. 
-
-//(para el ej6, notar que si todas las tareas tienen la misma prioridad, es un PSJF(mentira, es una que va la mas corta es la que corre primero siempre)). osea un mystery, el PSJF es un mystery con todas las tareas de igual prioridad.
-
-//fuera de eso, las diferencias entre round-robin y FIFO con llamadas bloqueantes es interesante de ver, el caso de llmadas bloqueantes solo se aprovecha en el rr, y obviamente este funciona mejor que el  cuando hay tareas mas rapidas que entraron luego.(esto no hace falta verlo, jaja, lo dejo por si las dudas, pero FIFO no hay que analizarlo mas del punto 2)
-
-el mystery funciona mejor que el rr en tiempo porque siempre toma el camnio minimo. 
-
-//si son tareas cpu solas elmystery termina mas rapido pero el rr deja el tiempo idle mas balanceado..
-
-el rr va a cambiar de procesa cada 5 quantums, y el mystery y el PSJF segun si entra una tarea de menor duracion, asi que si entran muchas tareas de menos de 5, los dos anteriores van a gastar mas tiempo en cambio de contexto, sino lo hara el roundrobin. El round robin seria mas recomendable pensas que tus tareas van a ser de cierto tamaño.
-
-//el psjf tiene la posibilidad de prioridades, que pueden descontrolar los tiempos de latencia, etc, segun la prioridad, Estan para que las mas inportantes finalicen luego.
-
-COn dos cores, los problemas de prioridad no son tan importantes, porque podes correr dos prioridades(o dos tareas de prioridad alta, al mismo tiempo). con 5 cores me atreveria a decir que no seria muy distinto a tener 5 mystery(....cambia que entran 5 de prioridad 1 etc...)
-
-
- 
+TaskPriorizada 2 10
+TaskPriorizada 2 15
+TaskPriorizada 3 6
+@5:
+TaskPriorizada 1 8
 
 
 
