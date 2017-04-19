@@ -1,5 +1,5 @@
-TaskPajarillo 3 4 5
+TaskPajarillo 1 4 5 
 @2:
-TaskPajarillo 4 6 7
-@4:
-TaskPajarillo 5 2 4
+TaskPajarillo 2 3 2 
+@4: 
+TaskPajarillo 3 2 2 

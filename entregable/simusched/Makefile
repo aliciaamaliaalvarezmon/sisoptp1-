@@ -22,7 +22,8 @@ $(MAIN): $(OBJS) sched_mistery.o
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
 ejercicio1:all $(DIR_SALIDA)
-	./simusched ej1.tsk 1 2 0 SchedFCFS |  python2 ./graphsched.py > $(DIR_SALIDA)/ej1.png
+	./simusched ej1.tsk 4 0 0 SchedFCFS |  python2 ./graphsched.py > $(DIR_SALIDA)/ej1a.png
+	./simusched ej1.tsk 4 0 0 SchedFCFS |  python2 ./graphsched.py > $(DIR_SALIDA)/ej1g.png
  
 
 ejercicio2: all $(DIR_SALIDA)
@@ -35,25 +36,27 @@ ejercicio3: all $(DIR_SALIDA)
 	./simusched ej3.tsk 3 2 0 SchedFCFS | python2 ./graphsched.py > $(DIR_SALIDA)/ej3b.png
 
 ejercicio4:all $(DIR_SALIDA)
-	./simusched lote.tsk 1 0 0 SchedRR 3 | python2  .graphsched.py > $(DIR_SALIDA)/ej4.png
+	./simusched ej4.tsk 1 0 0 SchedRR 3 | python2  ./graphsched.py > $(DIR_SALIDA)/ej4.png
 
 ejercicio5:all $(DIR_SALIDA)
-	./simusched ej5a.tsk 2 2 0 SchedMistery | python2 ./graphsched.py > $(DIR_SALIDA)/ej5a.png
-	./simusched ej5b.tsk 2 2 0 SchedMistery | python2 ./graphsched.py > $(DIR_SALIDA)/ej5b.png
-	./simusched ej5c.tsk 2 2 0 SchedMistery | python2 ./graphsched.py > $(DIR_SALIDA)/ej5c.png
+	./simusched ej5a.tsk 1 0 0 SchedMistery | python2 ./graphsched.py > $(DIR_SALIDA)/ej5a.png
+	./simusched ej5b.tsk 1 0 0 SchedMistery | python2 ./graphsched.py > $(DIR_SALIDA)/ej5b.png
+	./simusched ej5c.tsk 2 5 1 SchedMistery | python2 ./graphsched.py > $(DIR_SALIDA)/ej5c.png
 
 
 ejercicio6:all $(DIR_SALIDA)
-	./simusched ej6a.tsk 2 2 0 SchedPSJF | python2 ./graphsched.py > $(DIR_SALIDA)/ej6a.png
-	./simusched ej6b.tsk 2 2 0 SchedPSJF | python2 ./graphsched.py > $(DIR_SALIDA)/ej6b.png
+	./simusched ej6c.tsk 1 0 0 SchedPSJF | python2 ./graphsched.py > $(DIR_SALIDA)/ej6a.png
+	./simusched ej6b.tsk 2 0 0 SchedPSJF | python2 ./graphsched.py > $(DIR_SALIDA)/ej6b.png
+	./simusched ej6b.tsk 2 5 1 SchedPSJF | python2 ./graphsched.py > $(DIR_SALIDA)/ej6c.png
+	./simusched ej6b.tsk 1 0 0 SchedPSJF | python2 ./graphsched.py > $(DIR_SALIDA)/ej6d.png
 
 
 ejercicio7:all $(DIR_SALIDA)
-	./simusched ej7a.tsk 1 1 0 SchedMistery | python2 ./graphsched.py > $(DIR_SALIDA)/ej7a.png
+	./simusched ej7b.tsk 1 1 0 SchedMistery | python2 ./graphsched.py > $(DIR_SALIDA)/ej7a.png
 	./simusched ej7a.tsk 1 1 0 SchedPSJF | python2 ./graphsched.py > $(DIR_SALIDA)/ej7b.png
-	./simusched ej7a.tsk 1 1 0 SchedRR 5 | python2 ./graphsched.py > $(DIR_SALIDA)/ej7c.png
+	./simusched ej7b.tsk 1 1 0 SchedRR 5 | python2 ./graphsched.py > $(DIR_SALIDA)/ej7c.png
 	./simusched ej7b.tsk 2 1 0 SchedMistery | python2 ./graphsched.py > $(DIR_SALIDA)/ej7d.png
-	./simusched ej7b.tsk 2 1 0 SchedPSJF | python2 ./graphsched.py > $(DIR_SALIDA)/ej7e.png
+	./simusched ej7a.tsk 2 1 0 SchedPSJF | python2 ./graphsched.py > $(DIR_SALIDA)/ej7e.png
 	./simusched ej7b.tsk 2 1 0 SchedRR 5  | python2 ./graphsched.py > $(DIR_SALIDA)/ej7f.png
 
 
