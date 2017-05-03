@@ -20,6 +20,7 @@ class SchedRR : public SchedBase {
 		std::vector<int> ticksXCore;
 		std::vector<int> ticksActuales;
 		std::vector<int> waiting;
+		int dameSiguiente();
 		//int ticks[argn[0]];
 		// Completar
 };
