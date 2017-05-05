@@ -57,7 +57,7 @@ ejercicio7:all $(DIR_SALIDA)
 	./simusched ej7b.tsk 1 1 0 SchedRR 5 | python2 ./graphsched.py > $(DIR_SALIDA)/ej7c.png
 	./simusched ej7b.tsk 2 1 0 SchedMistery | python2 ./graphsched.py > $(DIR_SALIDA)/ej7d.png
 	./simusched ej7a.tsk 2 1 0 SchedPSJF | python2 ./graphsched.py > $(DIR_SALIDA)/ej7e.png
-	./simusched ej7b.tsk 2 1 0 SchedRR 5  | python2 ./graphsched.py > $(DIR_SALIDA)/ej7f.png
+	./simusched ej7b.tsk 2 1 0 SchedRR 5 5 | python2 ./graphsched.py > $(DIR_SALIDA)/ej7f.png
 
 
 
