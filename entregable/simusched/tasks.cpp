@@ -23,7 +23,7 @@ void TaskConsola(int pid, vector<int> params) {
   int n = params[0];
   int bmin = params[1];
   int bmax = params[2];
-
+  srand(5);
   //tengo que hacer n llamadas bloqueantes
 	for(int i = 0; i < n; i++) {
 	  //duracion al azar

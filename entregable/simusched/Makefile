@@ -23,8 +23,6 @@ $(MAIN): $(OBJS) sched_mistery.o
 
 ejercicio1:all $(DIR_SALIDA)
 	./simusched ej1.tsk 4 0 0 SchedFCFS |  python2 ./graphsched.py > $(DIR_SALIDA)/ej1a.png
-	./simusched ej1.tsk 4 0 0 SchedFCFS |  python2 ./graphsched.py > $(DIR_SALIDA)/ej1g.png
- 
 
 ejercicio2: all $(DIR_SALIDA)
 	./simusched ej2.tsk 1 2 0 SchedFCFS | python2 ./graphsched.py > $(DIR_SALIDA)/ej2a.png
@@ -36,7 +34,9 @@ ejercicio3: all $(DIR_SALIDA)
 	./simusched ej3.tsk 3 2 0 SchedFCFS | python2 ./graphsched.py > $(DIR_SALIDA)/ej3b.png
 
 ejercicio4:all $(DIR_SALIDA)
-	./simusched ej4.tsk 1 0 0 SchedRR 3 | python2  ./graphsched.py > $(DIR_SALIDA)/ej4.png
+	./simusched ej4.tsk 1 2 0 SchedRR 3 | python2  ./graphsched.py > $(DIR_SALIDA)/ej4a.png
+	./simusched ej4.tsk 2 1 2 SchedRR 3 2 | python2  ./graphsched.py > $(DIR_SALIDA)/ej4b.png
+
 
 ejercicio5:all $(DIR_SALIDA)
 	./simusched ej5a.tsk 1 0 0 SchedMistery | python2 ./graphsched.py > $(DIR_SALIDA)/ej5a.png
