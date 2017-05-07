@@ -183,7 +183,6 @@ SchedBase* sched_create(const char* sched, vector<int> argn) {
 
 int main(int argc, char* argv[]) {
   
-  srand(5);
 	Settings settings;
 	int rc = cmdline_parse(argc, argv, settings);
 	if(rc != 0) return rc;

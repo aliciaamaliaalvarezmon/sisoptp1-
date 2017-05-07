@@ -1,14 +1,5 @@
-TaskPriorizada 1 1
-TaskPriorizada 2 3
-@2:
-TaskPriorizada 1 1
-@2:
-TaskPriorizada 3 2
-@4:
-TaskPriorizada 1 1
-@4:
-TaskPriorizada 4 2
-@6:
-TaskPriorizada 5 3
-@6:
-TaskPriorizada 2 1
+TaskPriorizada 3 10
+@2
+TaskPriorizada 3 1
+@5
+TaskPriorizada 1 14

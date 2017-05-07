@@ -22,7 +22,7 @@ $(MAIN): $(OBJS) sched_mistery.o
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
 ejercicio1:all $(DIR_SALIDA)
-	./simusched ej1.tsk 4 0 0 SchedFCFS |  python2 ./graphsched.py > $(DIR_SALIDA)/ej1a.png
+	./simusched ej1.tsk 4 0 0 SchedFCFS | python2 ./graphsched.py > $(DIR_SALIDA)/ej1a.png
 
 ejercicio2: all $(DIR_SALIDA)
 	./simusched ej2.tsk 1 2 0 SchedFCFS | python2 ./graphsched.py > $(DIR_SALIDA)/ej2a.png
@@ -37,19 +37,15 @@ ejercicio4:all $(DIR_SALIDA)
 	./simusched ej4.tsk 1 2 0 SchedRR 3 | python2  ./graphsched.py > $(DIR_SALIDA)/ej4a.png
 	./simusched ej4.tsk 2 1 2 SchedRR 3 2 | python2  ./graphsched.py > $(DIR_SALIDA)/ej4b.png
 
-
 ejercicio5:all $(DIR_SALIDA)
 	./simusched ej5a.tsk 1 0 0 SchedMistery | python2 ./graphsched.py > $(DIR_SALIDA)/ej5a.png
 	./simusched ej5b.tsk 1 0 0 SchedMistery | python2 ./graphsched.py > $(DIR_SALIDA)/ej5b.png
 	./simusched ej5c.tsk 2 5 1 SchedMistery | python2 ./graphsched.py > $(DIR_SALIDA)/ej5c.png
 
-
 ejercicio6:all $(DIR_SALIDA)
-	./simusched ej6c.tsk 1 0 0 SchedPSJF | python2 ./graphsched.py > $(DIR_SALIDA)/ej6a.png
-	./simusched ej6b.tsk 2 0 0 SchedPSJF | python2 ./graphsched.py > $(DIR_SALIDA)/ej6b.png
-	./simusched ej6b.tsk 2 5 1 SchedPSJF | python2 ./graphsched.py > $(DIR_SALIDA)/ej6c.png
-	./simusched ej6b.tsk 1 0 0 SchedPSJF | python2 ./graphsched.py > $(DIR_SALIDA)/ej6d.png
-
+	./simusched ej6a.tsk 2 2 1 SchedPSJF | python2 ./graphsched.py > $(DIR_SALIDA)/ej6a.png
+	./simusched ej6a.tsk 1 0 0 SchedPSJF | python2 ./graphsched.py > $(DIR_SALIDA)/ej6b.png
+	./simusched ej6b.tsk 1 0 0 SchedPSJF | python2 ./graphsched.py > $(DIR_SALIDA)/ej6c.png
 
 ejercicio7:all $(DIR_SALIDA)
 	./simusched ej7b.tsk 1 1 0 SchedMistery | python2 ./graphsched.py > $(DIR_SALIDA)/ej7a.png
@@ -71,7 +67,7 @@ simusched.o: simusched.cpp basetask.h basesched.h tasks.h
 tasks.o: tasks.cpp tasks.h basetask.h
 
 clean:
-	rm -f $(OBJS) $(MAIN)  /$(DIR_SALIDA)
+	rm -fr $(OBJS) $(MAIN)  
 	rm -fr $(DIR_SALIDA)
 
 new: clean all
