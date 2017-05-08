@@ -1,5 +1,12 @@
+#TaskCPU 10
+#TaskCPU 15
+#TaskCPU 6
+#@5:
+#TaskCPU 8
+
+# Para Scheduler RR y Mistery
+
 TaskCPU 10
 TaskCPU 15
-TaskCPU 6
 @5:
-TaskCPU 8
+TaskCPU 5
