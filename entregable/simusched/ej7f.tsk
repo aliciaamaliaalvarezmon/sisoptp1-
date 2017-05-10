@@ -1,6 +1,9 @@
 # Para Scheduler RR y Mistery
 
 TaskCPU 3
+@5:
 TaskCPU 3
+@10:
 TaskCPU 3
+@15:
 TaskCPU 3
