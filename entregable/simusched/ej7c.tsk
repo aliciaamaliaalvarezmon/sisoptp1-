@@ -1,7 +1,7 @@
 # Para Scheduler PSFJ
 
-TaskPriorizada 4 14
-@6:
-TaskPriorizada 3 14
-@12:
+TaskPriorizada 1 14
+@4:
+TaskPriorizada 1 8
+@8:
 TaskPriorizada 1 4
