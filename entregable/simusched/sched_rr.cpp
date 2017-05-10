@@ -39,7 +39,7 @@ void SchedRR::unblock(int pid) {
 
 
 int SchedRR::dameSiguiente()
-{
+{	//Devuelve la siguiente tarea en la cola o IDLE en caso de que la cola este vacia
 	if (ready.empty()){return IDLE_TASK;}
 	else
 	{
@@ -52,28 +52,28 @@ int SchedRR::dameSiguiente()
 int SchedRR::tick(int cpu, const enum Motivo m) {
 	// Obtengo PID Tarea actual en CPU
 	int cpid = current_pid(cpu);
-
+	//Reviso si la tarea actual es la IDLE
 	if (cpid==IDLE_TASK)
 	{
-		ticksActuales[cpu]=0;
-		return dameSiguiente();
+		ticksActuales[cpu]=0;//Reseteo el quantum
+		return dameSiguiente();//Devuelvo la siguiente tarea en la cola
 	}
 
 	switch(m)
 	{	// La Tarea actual NO es la IDLE
 		case EXIT:
-		ticksActuales[cpu]=0;
-		return dameSiguiente();
+		ticksActuales[cpu]=0; //Reseteo el quantum
+		return dameSiguiente(); //Devuelvo la siguiente tarea en la cola
 		case BLOCK:
 		waiting.push_back(cpid);
-		ticksActuales[cpu]=0;
-		return dameSiguiente();
+		ticksActuales[cpu]=0; //Reset//Devuelvo la siguiente tarea en la colaeo el quantum
+		return dameSiguiente();//Devuelvo la siguiente tarea en la cola
 		case TICK:
-		ticksActuales[cpu]+=1;
-		if (ticksActuales[cpu]==ticksXCore[cpu])
-		{	ready.push(cpid);
-			ticksActuales[cpu]=0;
-			return dameSiguiente();
+		ticksActuales[cpu]+=1;//Incremento el quantum
+		if (ticksActuales[cpu]==ticksXCore[cpu])//Reviso si llego al quantum de la cpu
+		{	ready.push(cpid);//Pusheo la tarea actual
+			ticksActuales[cpu]=0;//Reseteo Quantum
+			return dameSiguiente();//Devuelvo la siguiente tarea en la cola
 		}
 		else{return cpid;}
 	}

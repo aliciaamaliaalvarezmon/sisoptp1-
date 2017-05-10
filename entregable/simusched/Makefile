@@ -43,8 +43,8 @@ ejercicio5:all $(DIR_SALIDA)
 	./simusched ej5c.tsk 2 5 1 SchedMistery | python2 ./graphsched.py > $(DIR_SALIDA)/ej5c.png
 
 ejercicio6:all $(DIR_SALIDA)
-	./simusched ej6a.tsk 2 2 1 SchedPSJF | python2 ./graphsched.py > $(DIR_SALIDA)/ej6a.png
-	./simusched ej6a.tsk 1 0 0 SchedPSJF | python2 ./graphsched.py > $(DIR_SALIDA)/ej6b.png
+	./simusched ej6a.tsk 1 0 0 SchedPSJF | python2 ./graphsched.py > $(DIR_SALIDA)/ej6a.png
+	./simusched ej6a.tsk 2 2 1 SchedPSJF | python2 ./graphsched.py > $(DIR_SALIDA)/ej6b.png
 	./simusched ej6b.tsk 1 0 0 SchedPSJF | python2 ./graphsched.py > $(DIR_SALIDA)/ej6c.png
 
 ejercicio7:all $(DIR_SALIDA)
